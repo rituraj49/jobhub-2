@@ -39,9 +39,11 @@ if(process.env.NODE_ENV !== 'production'){
 // console.log("server running");
 app.use(express.static(path.resolve(__dirname, './public')));
 
-app.use(cors({
+app.use(cors(
+    {
     origin:'https://jobhub-rituraj.onrender.com'
-}));
+}
+));
 
 app.use(express.json());
 

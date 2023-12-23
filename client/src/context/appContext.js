@@ -51,7 +51,7 @@ const AppProvider = ({ children }) => {
     // axios
     // axios.defaults.headers.common['Authorization'] = `Bearer ${state.token}`;
     const authFetch = axios.create({
-        baseURL: 'https://jobhub-rituraj.onrender.com/api/v1',
+        baseURL: 'https://jobhub-rituraj.onrender.com',
         // headers: {
         //     Authorization: `Bearer ${state.token}`,
         // }
@@ -157,7 +157,7 @@ const AppProvider = ({ children }) => {
         dispatch({ type: SETUP_USER_BEGIN });
         console.log(currentUser);
         try {
-            const { data } = await axios.post(`/auth/${endPoint}`, currentUser);
+            const { data } = await axios.post(`https://jobhub-rituraj.onrender.com/api/v1/auth/${endPoint}`, currentUser);
             console.log(data);
 
             const { user, token, location } = data;
@@ -211,7 +211,7 @@ const AppProvider = ({ children }) => {
             // console.log(currentUser.avatar);
 
             // console.log(formData, 'form data');
-            const { data } = await authFetch(`/auth/update`,
+            const { data } = await authFetch(`/api/v1/auth/update`,
                 {
                     method: 'patch',
                     data: currentUser,
@@ -257,7 +257,7 @@ const AppProvider = ({ children }) => {
         dispatch({ type: CREATE_JOB_BEGIN })
         try {
             const { position, company, jobLocation, jobType, status } = state;
-            const { data } = await authFetch.post('/jobs', {
+            const { data } = await authFetch.post('/api/v1/jobs', {
                 position,
                 company,
                 jobLocation,
@@ -281,7 +281,7 @@ const AppProvider = ({ children }) => {
     const getAllJobs = async () => {
         const { page, searchStatus, searchType, sort, search } = state;
 
-        let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort+by=${sort}`;
+        let url = `/api/v1/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort+by=${sort}`;
         if(search){
             url = url+`&search=${search}`
         }
@@ -332,7 +332,7 @@ const AppProvider = ({ children }) => {
         console.log("edit job begin");
         try {
             const { position, company, jobLocation, jobType, status, editJobId } = state;
-            await authFetch.patch(`/jobs/${editJobId}`, {
+            await authFetch.patch(`/api/v1/jobs/${editJobId}`, {
                 position,
                 company,
                 jobLocation,
@@ -357,7 +357,7 @@ const AppProvider = ({ children }) => {
     const deleteJob = async (id) => {
         dispatch({ type: DELETE_JOB_BEGIN });
         try {
-            await authFetch.delete(`/jobs/${id}`);
+            await authFetch.delete(`/api/v1/jobs/${id}`);
             getAllJobs();
         } catch (error) {
             console.log(error.response);
@@ -374,7 +374,7 @@ const AppProvider = ({ children }) => {
         dispatch({ type: GET_STATS_BEGIN });
         console.log("get stats begin");
         try {
-            const { data } = await authFetch.get('/jobs/stats');
+            const { data } = await authFetch.get('/api/v1/jobs/stats');
             console.log(data, "stats data");
             const { defaultStats, monthlyApplications } = data;
             dispatch({
