@@ -281,7 +281,7 @@ const AppProvider = ({ children }) => {
     const getAllJobs = async () => {
         const { page, searchStatus, searchType, sort, search } = state;
 
-        let url = `/api/v1/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+        let url = `/api/v1/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort+by=${sort}`;
         if(search){
             url = url+`&search=${search}`
         }
