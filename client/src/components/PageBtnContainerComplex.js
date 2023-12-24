@@ -15,7 +15,7 @@ function PageBtnContainerComplex() {
         console.log(currPage);
         changePage(currPage);
         navigate(`?page=${page}`)
-        // getAllJobs();
+        getAllJobs();
     }
 
     const addPageButton = ({ pageNum, activeClass }) => {
