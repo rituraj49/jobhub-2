@@ -37,7 +37,7 @@ if(process.env.NODE_ENV !== 'production'){
     app.use(morgan('dev'));
 }
 // console.log("server running");
-app.use(express.static(path.resolve(__dirname, './public')));
+app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.use(cors(
     {
@@ -60,7 +60,7 @@ app.use("/api/v1/auth/", authRouter);
 app.use("/api/v1/jobs/", authenticateUser, jobsRouter);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './public', 'index.html'))
+    res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
 });
 
 app.use(notFoundMiddleware);

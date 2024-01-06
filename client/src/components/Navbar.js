@@ -13,6 +13,7 @@ function Navbar() {
   return (
     <Wrapper>
       <div className="nav-center">
+        <img src={user.avatar} alt="avatar" className='img-profile' />
         <button
           type='button'
           className="toggle-btn"

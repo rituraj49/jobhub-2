@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-prod-app": "npm i && cd client && npm i && npm run build",
     "server": "nodemon server --ignore-client",
     "client": "cd client && npm start",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""

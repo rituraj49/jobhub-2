@@ -13,14 +13,21 @@ function JobsContainer() {
     useEffect(() => {
         getAllJobs();
     },[search, searchStatus, searchType, sort, page])
-    // if(isLoading){
-    //     return <Loading center />
-    // }
+    if(isLoading){
+        return <Loading center />
+    }
+    if(jobs.length === 0){
+        return(
+            <Wrapper>
+                <h2>No jobs to display...</h2>
+            </Wrapper>
+        ) 
+    }
   return (
     <Wrapper>
         { showAlert && <Alert />}
-        { isLoading && <Loading center />}
-        {jobs.length === 0 && <h2>No jobs to display...</h2>}
+        {/* { isLoading && <Loading center />} */}
+        {/* {jobs.length === 0 && <h2>No jobs to display...</h2>} */}
         <header>
         <h5>
             {totalJobs} job{jobs.length>1 && 's'} found

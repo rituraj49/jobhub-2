@@ -6,7 +6,7 @@ function Landing() {
   return (
     <Wrapper className='page'>
         {/* <nav style={{marginTop:"100px", marginLeft:"50px", width:"20%", height:"0", }}> */}
-        <nav className=''>
+        <nav className='nav1'>
            <Logo />
         </nav>
         <div className="container page">
